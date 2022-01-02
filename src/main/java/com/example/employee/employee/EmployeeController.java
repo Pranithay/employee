@@ -1,9 +1,7 @@
 package com.example.employee.employee;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +18,18 @@ public class EmployeeController {
     }
 
     @GetMapping
-    public List<Employee> hello() {
+    public List<Employee> getEmployees() {
+
         return employeeService.getEmployees();
     }
+
+    @PostMapping()
+    public void postEmployee(@RequestBody Employee employee){
+        employeeService.addNishanth(employee);
+    }
+    @DeleteMapping(path = "{id}")
+    public void deleEmployee(@PathVariable Long id){
+        employeeService.deleteEmployee(id);
+    }
+
 }
